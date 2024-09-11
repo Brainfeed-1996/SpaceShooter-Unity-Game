@@ -1,10 +1,18 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 10.0f;
     public GameObject projectilePrefab;
     public Transform firePoint;
+    private Animator animator;
+    private bool isShieldActive = false;
+    private int extraLives = 3;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -18,6 +26,8 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
+
+        animator.SetBool("isShooting", Input.GetButton("Fire1"));
     }
 
     void Shoot()
